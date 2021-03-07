@@ -8,9 +8,10 @@ from home.models import *
 class BaseView(View):
     views = ()
 
+
 class HomeView(BaseView):
     def get(self, request):
-        self.views['catagories'] = Category.objects.all()
+        self.views['categories'] = Category.objects.all()
         self.views['sliders'] = Slider.objects.all()
         self.views['brands'] = Brand.objects.all()
         self.views['ads1'] = Ad.objects.filter(rank=1)
