@@ -16,6 +16,9 @@ class Category(models.Model):
         assert isinstance(self.name, object)
         return self.name
 
+    def get_category_url(self):
+        return reverse("home:category", kwargs={'slug': self.slug})
+
 
 class Slider(models.Model):
     name = models.CharField(max_length=300)
