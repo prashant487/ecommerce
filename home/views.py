@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 
 # Create your views here.
 from django.views import View
-from django.contrib import messages
+from django.contrib import messages,auth
 from django.contrib.auth.models import User
 
 from home.models import *
@@ -97,3 +97,18 @@ def register(request):
             return redirect('home:signup')
 
     return render(request, 'signup.html')
+
+
+def signin(request):
+    if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['password']
+        user = auth.authenticate(username=username, password=password)
+        if user is not None:
+            auth.login(request, user)
+            return redirect('/')
+        else:
+            messages.error(request, 'username and password donot match')
+            return redirect('home:login')
+
+    return render(request, 'signin.html')

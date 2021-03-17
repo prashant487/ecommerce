@@ -9,4 +9,5 @@ urlpatterns = [
     path('search', SearchView.as_view(), name='search'),
     path('category/<slug>', CategoryView.as_view(), name='category'),
     path('signup', register, name='signup'),
+    path('signin', signin, name='signin'),
 ]
